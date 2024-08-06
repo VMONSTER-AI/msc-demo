@@ -43,7 +43,11 @@ ex)
   </body>
 ...
 ```
-#### 2. 이 예제 프로젝트 내 /ejel-speaking-js 폴더를 본 프로젝트에 복사 붙여넣기 하고, 필요한 곳에서 import하여 사용하세요.<br />
+#### 2. 이 예제 프로젝트 내 /ejel-speaking-js 폴더를 본 프로젝트에 복사 붙여넣기 하고, 필요한 곳에서 가져와 사용하세요.<br />
+ex) 
+```
+import RoomManager from "./ejel-speaking-js";
+```
 
 
 # API Docs
