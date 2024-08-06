@@ -64,6 +64,7 @@ document
       token: token,
       name: name,
       apiKey: API_KEY,
+      apiUrl: API_URL,
     };
 
     // Create RoomManager object with config and properties
