@@ -65,9 +65,8 @@ response: {
 
 POST /rooms/{room_name}/messages
 - form data 형식
-- request body < 1MB(용량 제한)
 request: {
-	"bg_image": File(Optional),
+	"bg_image": File(Optional),(jpg/png)
 	"message": str
 }
 ```
