@@ -30,7 +30,7 @@ room이 생성된 이후, 나머지 기능을 사용할 수 있습니다.
 RoomManager 객체에는 다양한 이벤트 핸들러를 연결할 수 있습니다. 예제의 80째줄 - 105째줄에서 해당 내용을 확인할 수 있습니다.
 
 # 프로젝트에 추가
-index.html에 다음 코드를 추가하세요.
+#### 1. index.html에 다음 코드를 추가하세요.
 ```
 <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
 ```
@@ -43,7 +43,7 @@ ex)
   </body>
 ...
 ```
-이 예제 프로젝트 내 /ejel-speaking-js 폴더를 본 프로젝트에 복사 붙여넣기 하고, import하여 사용하세요.<br />
+#### 2. 이 예제 프로젝트 내 /ejel-speaking-js 폴더를 본 프로젝트에 복사 붙여넣기 하고, 필요한 곳에서 import하여 사용하세요.<br />
 
 
 # API Docs
