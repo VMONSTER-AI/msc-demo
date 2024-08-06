@@ -1,5 +1,4 @@
-import RoomManager from "ejel-speaking-js";
-import axios from "axios";
+import RoomManager from "./ejel-speaking-js";
 const API_KEY = "";
 const API_URL = "";
 
@@ -31,26 +30,25 @@ document.querySelector("#app").innerHTML = `
 let roomManager;
 
 const requestRoomConfig = async (apiKey) => {
-  return axios
-    .post(
-      `${API_URL}/rooms`,
-      {},
-      {
-        headers: {
-          "X-api-key": apiKey,
-        },
-      }
-    )
-    .then((response) => {
-      return {
-        url: response.data.url,
-        token: response.data.token,
-        name: response.data.name,
-      };
-    })
-    .catch((error) => {
-      throw error;
+  try {
+    const response = await fetch(`${API_URL}/rooms`, {
+      method: "POST",
+      headers: {
+        "x-api-key": apiKey,
+      },
     });
+    if (!response.ok) {
+      throw new Error("failed to create room");
+    }
+    const data = await response.json();
+    return {
+      url: data.url,
+      token: data.token,
+      name: data.name,
+    };
+  } catch (error) {
+    throw error;
+  }
 };
 
 document

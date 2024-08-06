@@ -1,5 +1,5 @@
 {
-  "name": "daily-js-test",
+  "name": "msc-demo",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,9 +11,5 @@
   "devDependencies": {
     "vite": "^5.2.0"
   },
-  "dependencies": {
-    "@daily-co/daily-js": "^0.61.1",
-    "axios": "^1.7.3",
-    "ejel-speaking-js": "^1.0.4"
-  }
+  "dependencies": {}
 }
