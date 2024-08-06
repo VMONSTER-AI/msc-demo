@@ -27,3 +27,25 @@ room이 생성된 이후, 나머지 기능을 사용할 수 있습니다.
 텍스트(required)와 배경 이미지(optional)를 입력한 뒤 엔터 버튼을 누르면, agent가 해당 내용을 말하기 시작합니다.
 <br /><br />
 RoomManager 객체에는 다양한 이벤트 핸들러를 연결할 수 있습니다. 예제의 80째줄 - 105째줄에서 해당 내용을 확인할 수 있습니다.
+
+# API Docs
+```
+headers: {
+	"x-api-key": API_KEY
+}
+POST /rooms
+request: X
+response: {
+	"name": room_name(str)
+	"url": url(str),
+	"token": token(str),
+}
+
+POST /rooms/{room_name}/messages
+- form data 형식
+- request body < 1MB(용량 제한)
+request: {
+	"bg_image": File(Optional),
+	"message": str
+}
+```
