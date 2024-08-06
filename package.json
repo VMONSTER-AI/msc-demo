@@ -14,6 +14,6 @@
   "dependencies": {
     "@daily-co/daily-js": "^0.61.1",
     "axios": "^1.7.3",
-    "ejel-speaking-js": "^1.0.3"
+    "ejel-speaking-js": "^1.0.4"
   }
 }
