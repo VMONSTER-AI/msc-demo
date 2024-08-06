@@ -1,5 +1,6 @@
 # msc-demo
 
+# 예제 실행
 예제를 확인하려면 다음을 실행해 주세요.
 
 ```
@@ -27,6 +28,23 @@ room이 생성된 이후, 나머지 기능을 사용할 수 있습니다.
 텍스트(required)와 배경 이미지(optional)를 입력한 뒤 엔터 버튼을 누르면, agent가 해당 내용을 말하기 시작합니다.
 <br /><br />
 RoomManager 객체에는 다양한 이벤트 핸들러를 연결할 수 있습니다. 예제의 80째줄 - 105째줄에서 해당 내용을 확인할 수 있습니다.
+
+# 프로젝트에 추가
+index.html에 다음 코드를 추가하세요.
+```
+<script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
+```
+메인 코드(ex.index.js, main.js) 를 import하는 script가 있다면 그 직전에 추가하세요.<br />
+ex)
+```
+...
+<script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
+    <script type="module" src="/main.js"></script>
+  </body>
+...
+```
+이 예제 프로젝트 내 /ejel-speaking-js 폴더를 본 프로젝트에 복사 붙여넣기 하고, import하여 사용하세요.<br />
+
 
 # API Docs
 ```
