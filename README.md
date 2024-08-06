@@ -7,8 +7,8 @@ npm install
 npm run dev
 ```
 
+main.js의 API_KEY와 API_URL에 알맞은 api key와 api url을 입력해 주세요.
 
-main.js의 API_KEY에 알맞은 api key를 입력해 주세요.
 <hr />
 첫째 섹션의 Request Room 버튼을 누르면 API_KEY를 이용해 room이 생성됩니다.
 생성 완료되면 버튼의 오른편에 "Room Created" 가 표시됩니다.

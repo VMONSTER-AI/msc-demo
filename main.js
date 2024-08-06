@@ -1,6 +1,7 @@
 import RoomManager from "ejel-speaking-js";
 import axios from "axios";
 const API_KEY = "";
+const API_URL = "";
 
 document.querySelector("#app").innerHTML = `
   <button id="request-room-btn">Request Room</button>
@@ -32,7 +33,7 @@ let roomManager;
 const requestRoomConfig = async (apiKey) => {
   return axios
     .post(
-      "https://msc-api.ejelai.com/rooms",
+      `${API_URL}/rooms`,
       {},
       {
         headers: {
