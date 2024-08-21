@@ -1,6 +1,7 @@
 # msc-demo
 
 # 예제 실행
+
 예제를 확인하려면 다음을 실행해 주세요.
 
 ```
@@ -30,12 +31,16 @@ room이 생성된 이후, 나머지 기능을 사용할 수 있습니다.
 RoomManager 객체에는 다양한 이벤트 핸들러를 연결할 수 있습니다. 예제의 80째줄 - 105째줄에서 해당 내용을 확인할 수 있습니다.
 
 # 프로젝트에 추가
+
 #### 1. index.html에 다음 코드를 추가하세요.
+
 ```
 <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
 ```
+
 메인 코드(ex.index.js, main.js) 를 import하는 script가 있다면 그 직전에 추가하세요.<br />
 ex)
+
 ```
 ...
 <script crossorigin src="https://unpkg.com/@daily-co/daily-js"></script>
@@ -43,20 +48,34 @@ ex)
   </body>
 ...
 ```
+
 #### 2. 이 예제 프로젝트 내 /ejel-speaking-js 폴더를 본 프로젝트에 복사 붙여넣기 하고, 필요한 곳에서 가져와 사용하세요.<br />
-ex) 
+
+ex)
+
 ```
 import RoomManager from "./ejel-speaking-js";
 ```
 
-
 # API Docs
+
 ```
+position_x : X 좌표 값 (0 ~ 1280)
+position_y : Y 좌표 값 (0 ~ 720)
+scale : AI 휴먼의 크기 (0.5 ~ 1.2)
+
+범위를 벗어난 값에 대해서는 에러 핸들링이 되고 있습니다.
+
 headers: {
 	"x-api-key": API_KEY
 }
 POST /rooms
-request: X
+request: {
+	"bg_image": File(Optional),(jpg/png)
+	"position_x": int(Optional),
+	"position_y": int(Optional),
+	"scale": float(Optional),
+}
 response: {
 	"name": room_name(str)
 	"url": url(str),
@@ -67,6 +86,9 @@ POST /rooms/{room_name}/messages
 - form data 형식
 request: {
 	"bg_image": File(Optional),(jpg/png)
+	"position_x": int(Optional),
+	"position_y": int(Optional),
+	"scale": float(Optional),
 	"message": str
 }
 ```

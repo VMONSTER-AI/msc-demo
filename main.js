@@ -1,8 +1,22 @@
-import RoomManager from "./ejel-speaking-js";
+import RoomManager from "ejel-speaking-js";
+import axios from "axios";
+
 const API_KEY = "";
 const API_URL = "";
 
 document.querySelector("#app").innerHTML = `
+  배경 이미지
+    <br />
+  <input type="file" id="imageInput" accept="image/*">
+  <br />
+  <br />
+  위치
+    <br />
+    x : <textarea type="text"id="positionX" cols="5" rows="1"></textarea>
+    y : <textarea type="text"id="positionY" cols="5" rows="1"></textarea>
+    scale : <textarea type="text"id="scaleInput" cols="5" rows="1"></textarea>
+  <br />
+  <br />
   <button id="request-room-btn">Request Room</button>
   <span id="request-room-result"></span>
   <hr />
@@ -14,41 +28,59 @@ document.querySelector("#app").innerHTML = `
   <button id="get-is-agent-speaking-btn">get isAgentSpeaking</button>
   <hr />
   <h3>메세지 전송</h3>
-  배경 이미지
-    <br />
-  <input type="file" id="imageInput" accept="image/*">
-  <br />
-  <br />
-  텍스트 입력   
+  텍스트 입력
   <br />
     <textarea type="text"id="userInput" cols="50" rows="10"></textarea>
   <hr />
-  <div id="video-agent"></div>
+  <div id="video-agent" style="width: 1280px; height: 720px;"></div>
   <span id="agent-speaking-status"></span>
 `;
 
 let roomManager;
+let data;
+let bg_image;
 
 const requestRoomConfig = async (apiKey) => {
-  try {
-    const response = await fetch(`${API_URL}/rooms`, {
-      method: "POST",
-      headers: {
-        "x-api-key": apiKey,
-      },
-    });
-    if (!response.ok) {
-      throw new Error("failed to create room");
-    }
-    const data = await response.json();
-    return {
-      url: data.url,
-      token: data.token,
-      name: data.name,
-    };
-  } catch (error) {
-    throw error;
+  const formData = new FormData();
+
+  const imageInput = document.getElementById("imageInput");
+  if (imageInput.files.length > 0) {
+    formData.append("bg_image", imageInput.files[0]);
   }
+  const position_x = document.getElementById("positionX").value;
+  if (position_x.length !== 0) {
+    formData.append("position_x", position_x);
+  }
+  const position_y = document.getElementById("positionY").value;
+  if (position_y.length !== 0) {
+    formData.append("position_y", position_y);
+  }
+  const scale = document.getElementById("scaleInput").value;
+  if (scale.length !== 0) {
+    formData.append("scale", Number.parseFloat(scale));
+  }
+
+  if (formData.entries().next().done) {
+    data = {};
+  } else {
+    data = formData;
+  }
+  return axios
+    .post(`${API_URL}/rooms`, data, {
+      headers: {
+        "X-api-key": apiKey,
+      },
+    })
+    .then((response) => {
+      return {
+        url: response.data.url,
+        token: response.data.token,
+        name: response.data.name,
+      };
+    })
+    .catch((error) => {
+      throw error;
+    });
 };
 
 document
@@ -56,7 +88,10 @@ document
   .addEventListener("click", async () => {
     // request room config
     const { url, token, name } = await requestRoomConfig(API_KEY);
-
+    document.getElementById("imageInput").value = null;
+    document.getElementById("positionX").value = null;
+    document.getElementById("positionY").value = null;
+    document.getElementById("scaleInput").value = null;
     const config = {
       url: url,
       token: token,
@@ -136,13 +171,21 @@ document.getElementById("userInput").addEventListener("keypress", (event) => {
 
     if (!(roomManager.isAgentSpeaking() === true) && text.length !== 0) {
       const imageInput = document.getElementById("imageInput");
+      const position_x = document.getElementById("positionX").value;
+      const position_y = document.getElementById("positionY").value;
+      const scale = document.getElementById("scaleInput").value;
 
       if (imageInput.files.length > 0) {
-        roomManager.sendMessage(text, imageInput.files[0]);
+        bg_image = imageInput.files[0];
       } else {
-        roomManager.sendMessage(text);
+        bg_image = null;
       }
-      document.getElementById("userInput").value = "";
+      roomManager.sendMessage(text, bg_image, position_x, position_y, scale);
+      document.getElementById("userInput").value = null;
+      document.getElementById("imageInput").value = null;
+      document.getElementById("positionX").value = null;
+      document.getElementById("positionY").value = null;
+      document.getElementById("scaleInput").value = null;
     }
   }
 });
