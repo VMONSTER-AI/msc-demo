@@ -1,8 +1,8 @@
-import RoomManager from "ejel-speaking-js";
+import RoomManager from "./ejel-speaking-js";
 import axios from "axios";
 
-const API_KEY = "";
 const API_URL = "";
+const API_KEY = "";
 
 document.querySelector("#app").innerHTML = `
   배경 이미지
