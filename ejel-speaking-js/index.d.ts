@@ -1,37 +1,21 @@
-interface RoomManagerConfig {
-  url: string;
-  token: string;
-  name: string;
-  apiKey: string;
-  apiUrl: string;
-}
-type ChatState =
-  | "new"
-  | "loading"
-  | "loaded"
-  | "joining-chat"
-  | "joined-chat"
-  | "left-chat"
-  | "error";
-
 declare class RoomManager {
-  constructor(config: RoomManagerConfig);
-  setOnMessage(handler: (arg0: string) => void): void;
-  setOnAgentEnter(handler: () => void): void;
-  setOnError(handler: (arg0: any) => void): void;
-  setOnAgentSpeakingStart(handler: () => void): void;
-  setOnAgentSpeakingEnd(handler: () => void): void;
-  setOnClose(handler: () => void): void;
-  addAgentVideoTile(parentSelector?: string): void;
-  clearAgentVideoTile(): void;
-  start(): Promise<void>;
-  leave(): Promise<void>;
-  sendMessage(text: string, bgImage?: File): Promise<void>;
-  userChatState(): ChatState;
-  isAgentSpeaking(): boolean | null;
-  isUserExists(): boolean;
-  isAgentExists(): boolean;
-  #private;
+    constructor(config: any);
+    setOnMessage(handler: any): void;
+    setOnAgentEnter(handler: any): void;
+    setOnError(handler: any): void;
+    setOnAgentSpeakingStart(handler: any): void;
+    setOnAgentSpeakingEnd(handler: any): void;
+    setOnClose(handler: any): void;
+    addAgentVideoTile(parentSelector?: string): void;
+    clearAgentVideoTile(): void;
+    start(): Promise<void>;
+    leave(): Promise<void>;
+    sendMessage(text: any, bgImage: any, position_x: any, position_y: any, scale: any): Promise<void>;
+    userChatState(): any;
+    isAgentSpeaking(): null;
+    isUserExists(): boolean;
+    isAgentExists(): boolean;
+    #private;
 }
 
 export { RoomManager as default };
